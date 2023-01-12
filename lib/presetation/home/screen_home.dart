@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/dio/new_and-hot/function_new_and_hot.dart';
 import 'package:netflix/presetation/home/widgets/background_card.dart';
 
 import 'package:netflix/presetation/widgets/main_title_card.dart';
 
-import 'widgets/custom_button_widget.dart';
 import 'widgets/number_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
@@ -33,7 +32,7 @@ class ScreenHome extends StatelessWidget {
           child: Stack(
             children: [
               ListView(
-                children: [
+                children: const [
                   BackgroundCard(),
                   MainTItleCard(title: "Released in the past year"),
                   MainTItleCard(
@@ -47,17 +46,17 @@ class ScreenHome extends StatelessWidget {
               scrollNotifier.value == true
                   ? AnimatedContainer(
                       duration: Duration(seconds: 3),
-                      color: Colors.black.withOpacity(0.3),
                       width: double.infinity,
                       height: 80,
                       child: Column(
                         children: [
                           Row(
                             children: [
+                              kwidth,
                               Image.network(
-                                "https://www.freepnglogos.com/uploads/netflix-logo-circle-png-5.png",
-                                width: 60,
-                                height: 60,
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0RkG8KYe9kH1xO60rxolcOiPE7IU8t45Ouw&usqp=CAU",
+                                width: 40,
+                                height: 40,
                               ),
                               Spacer(),
                               Icon(

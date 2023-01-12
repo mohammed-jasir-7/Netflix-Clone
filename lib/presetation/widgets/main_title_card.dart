@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/dio/new_and-hot/function_new_and_hot.dart';
 
 import '../../core/constants.dart';
 import 'main_card.dart';
@@ -18,15 +19,22 @@ class MainTItleCard extends StatelessWidget {
           kheight,
           LimitedBox(
             maxHeight: 200,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: List.generate(
-                  10,
-                  (index) => Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: MainCard(),
-                      )),
-            ),
+            child: ValueListenableBuilder(
+                valueListenable: listOfComing,
+                builder: (context, value, child) {
+                  return listOfComing.value.isEmpty
+                      ? CircularProgressIndicator()
+                      : ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: List.generate(
+                              10,
+                              (index) => Padding(
+                                    padding: const EdgeInsets.only(right: 15.0),
+                                    child: MainCard(
+                                        image: value[index].posterPath ?? "k"),
+                                  )),
+                        );
+                }),
           )
         ],
       ),

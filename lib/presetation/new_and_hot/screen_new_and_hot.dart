@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
+import 'package:netflix/dio/fast_laugh_function.dart';
+import 'package:netflix/dio/new_and-hot/everyone_watchiching.dart';
 
 import '../../core/constants.dart';
+import '../../dio/new_and-hot/function_new_and_hot.dart';
 import 'widgets/coming_soon_widget.dart';
 import 'widgets/everyones_watching_widget.dart';
 
@@ -60,18 +63,32 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   _buildComingSoon() {
-    return ListView.builder(
-      itemCount: 10,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => const ComingSoonWidget(),
+    comingSoonGet();
+    return ValueListenableBuilder(
+      valueListenable: listOfComing,
+      builder: (context, value, child) {
+        return ListView.builder(
+          itemCount: listOfComing.value.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) =>
+              ComingSoonWidget(result: value[index]),
+        );
+      },
     );
   }
 
   _buildEveryonsWatching() {
-    return ListView.builder(
-      itemCount: 10,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => const EveryonesWatchingWidget(),
+    everyOneWatch();
+    return ValueListenableBuilder(
+      valueListenable: everyOne,
+      builder: (context, value, child) {
+        return ListView.builder(
+          itemCount: everyOne.value.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) =>
+              EveryonesWatchingWidget(result: value[index]),
+        );
+      },
     );
   }
 }

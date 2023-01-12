@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/dio/everyone/result.dart';
 
 import '../../../core/colors/colors.dart';
 import '../../../core/constants.dart';
@@ -6,9 +7,9 @@ import '../../home/widgets/custom_button_widget.dart';
 import '../../widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  const EveryonesWatchingWidget({
-    Key? key,
-  }) : super(key: key);
+  const EveryonesWatchingWidget({Key? key, required this.result})
+      : super(key: key);
+  final Result result;
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +17,18 @@ class EveryonesWatchingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kheight,
-        const Text(
-          "Tall Girl 2",
+        Text(
+          result.title ?? "No title",
           style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
         ),
         kheight,
-        const Text(
-            "55555,jsbdvjsdvbsb sbv;jbdv;bd ;aB;voB vobvd ovbv;ddbv;dbvbdbvlvddbda;bvabv ",
+        Text(result.overview ?? "",
             style: TextStyle(
               color: kgrey,
               fontSize: 13,
             )),
-        const VideoWidget(),
+        kheight,
+        VideoWidget(imageurl: result.backdropPath ?? "k", id: result.id ?? 1),
         kheight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
